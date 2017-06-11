@@ -15,7 +15,7 @@ activity<-read.csv("activity.csv")
 
 
 ## What is mean total number of steps taken per day?
-```{r}
+```{r ,fig.height=4}
 library(dplyr,warn.conflicts = FALSE)
 act0<-filter(activity,!is.na(activity$steps))
 act1<-group_by(act0,date)
@@ -30,7 +30,7 @@ paste("Median : " , stepssummary["Median"], "  Mean : " ,stepssummary["Mean"])
 
 ## What is the average daily activity pattern?
 
-```{r}
+```{r ,fig.height=4}
 act3<-group_by(act0,interval)
 act4<-summarise(act3,averagesteps=mean(steps))
 
@@ -49,7 +49,7 @@ paste("The 5-minute interval, which  contains the maximum number of steps is ", 
 ### Increasing the number of samples affected the median's change,
 ### On the other hand, as I used average values to fulfill the missing values, the mean of the samples is not affected.
 
-```{r}
+```{r ,fig.height=4}
 naData<-filter(activity,is.na(steps))
 paste("The number of Missing data in the dataset is : ", dim(naData)[1])
 
@@ -80,7 +80,7 @@ paste("Median : " , stepssummaryR["Median"], "  Mean : " ,stepssummaryR["Mean"],
 ### In the range from 100 to 1750, weekend's activity is higher than weekday's one. 
 ### In general people are walking in the morning to go to job or school among weekday, on the other hand people can go out during day time in the weekend.
 ### those figures should show that fact.
-```{r}
+```{r ,fig.height=4}
 Sys.setlocale("LC_TIME","us")
 
 acti0<-mutate(activityRevised,wday=weekdays(as.Date(activityRevised$date)))
